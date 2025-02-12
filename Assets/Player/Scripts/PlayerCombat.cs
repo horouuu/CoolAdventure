@@ -9,7 +9,6 @@ public class PlayerCombat : MonoBehaviour
     private InputAction attack;
 
     // hp
-    private int maxHp = 3;
     private bool iFrame = false;
 
     // pts
@@ -90,7 +89,7 @@ public class PlayerCombat : MonoBehaviour
     void Awake()
     {
         playerControls = new InputMap();
-        PlayerHealth.SetCurrentHp(maxHp);
+        PlayerHealth.SetCurrentHp(PlayerHealth.maxHp);
         points = 0;
     }
 

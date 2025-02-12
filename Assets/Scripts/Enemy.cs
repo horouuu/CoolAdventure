@@ -1,14 +1,16 @@
 using System.Collections;
 using NUnit.Framework.Constraints;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int maxHp = 15;
+    public int maxHp = 5;
     public int currentHp;
     public Animator animator;
     private float stunDelay = 3f;
     private float stunNext = 0f;
+    public GameObject dropItem;
 
     IEnumerator MiniStun()
     {
@@ -53,5 +55,10 @@ public class Enemy : MonoBehaviour
     {
         currentHp = maxHp;
         animator = GetComponent<Animator>();
+    }
+
+    public void DropItem()
+    {
+        Instantiate(dropItem, transform.position, quaternion.identity);
     }
 }
