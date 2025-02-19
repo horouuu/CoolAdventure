@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static int score;
-    public static int badgeScore = 0;
+    private int score;
+    public int badgeScore = 0;
     public TextMeshProUGUI scoreGUI;
     public GameObject badgeContainer;
     private Image badgeOutlineImage;
@@ -15,6 +15,9 @@ public class ScoreManager : MonoBehaviour
     public GameObject gameOverUI;
     private TextMeshProUGUI gameOverUIScore;
 
+    public void IncreaseScore(int s) {
+        this.score += s;
+    }
     void Awake()
     {
         badgeWingsImage = badgeContainer.transform.GetChild(0).gameObject.GetComponent<Image>();

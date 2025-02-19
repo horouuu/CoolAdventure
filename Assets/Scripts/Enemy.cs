@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private float stunDelay = 3f;
     private float stunNext = 0f;
     public GameObject dropItem;
+    public ScoreManager scoreManager;
 
     IEnumerator MiniStun()
     {
@@ -22,14 +23,14 @@ public class Enemy : MonoBehaviour
     public void Damage(int damage)
     {
         currentHp -= damage;
-        PlayerCombat.Reward(1);
+        scoreManager.IncreaseScore(1);
 
         // hurt anim
         animator.SetTrigger("hit");
 
         if (currentHp <= 0)
         {
-            Die(1);
+            Die(5);
         }
 
         // stun if not dead/stunned
@@ -47,7 +48,7 @@ public class Enemy : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         GetComponent<MushroomMovement>().enabled = false;
 
-        PlayerCombat.Reward(reward);
+        scoreManager.IncreaseScore(reward);
         this.enabled = false;
     }
 

@@ -16,9 +16,10 @@ public class ChestOpen : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
+        isOpened = true;
         animator.SetBool("opened", true);
         Instantiate(dropItem, transform.position, Quaternion.identity);
-        isOpened = true;
+        
     }
 
     public bool CanInteract()

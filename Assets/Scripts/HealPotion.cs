@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class HealPotion : MonoBehaviour
 {
+    public AudioMixer mixer;
     public AudioSource powerupAudio;
     void OnTriggerEnter2D(Collider2D col)
     {

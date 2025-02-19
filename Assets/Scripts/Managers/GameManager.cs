@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class GameManagerScript : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI;
 
