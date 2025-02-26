@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isWallGripping = false;
     public bool isWallSliding = false;
     private float wallSlidingSpeed = 0.4f;
-    private bool isWallJumping = false;
+    public bool isWallJumping = false;
     private float wallJumpTime = 0.2f;
     private float wallJumpCounter;
     public float wallJumpDuration = 2f;
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     public bool climbPower = false;
 
     // states
-    [Serialize] private bool facingRightState = true;
+    [Serialize] public bool facingRightState = true;
     [Serialize] private bool groundedState = false;
     [Serialize] private bool walledState = false;
     [Serialize] private bool movingState = false;

@@ -3,8 +3,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class ActionManager : MonoBehaviour
+public class ActionManager : Singleton<ActionManager>
 {
+    public override void Awake()
+    {
+        base.Awake();
+    }
+
     public UnityEvent jumpCheck;
     public UnityEvent<int> moveCheck;
     public UnityEvent interact;

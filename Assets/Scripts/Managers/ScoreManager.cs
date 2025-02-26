@@ -2,9 +2,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : Singleton<ScoreManager>
 {
-    private int score;
+    public int score;
+    public int highScore;
     public int badgeScore = 0;
     public TextMeshProUGUI scoreGUI;
     public GameObject badgeContainer;
@@ -15,11 +16,22 @@ public class ScoreManager : MonoBehaviour
     public GameObject gameOverUI;
     private TextMeshProUGUI gameOverUIScore;
 
-    public void IncreaseScore(int s) {
-        this.score += s;
-    }
-    void Awake()
+    public void IncreaseScore(int s)
     {
+        this.score += s;
+        if (this.score > this.highScore)
+        {
+            this.highScore = this.score;
+        }
+    }
+
+    public void ResetCurrentScore() {
+        this.score = 0;
+    }
+    override public void Awake()
+    {
+        base.Awake();
+        
         badgeWingsImage = badgeContainer.transform.GetChild(0).gameObject.GetComponent<Image>();
         badgeFillImage = badgeContainer.transform.GetChild(1).gameObject.GetComponent<Image>();
         badgeOutlineImage = badgeContainer.transform.GetChild(2).gameObject.GetComponent<Image>();
@@ -46,7 +58,7 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreGUI.text = "Score: " + score;
+        scoreGUI.text = "Score: " + score + "\nHi-Score: " + highScore;
         gameOverUIScore.text = "Score:\n" + score;
         if (score >= 15)
         {

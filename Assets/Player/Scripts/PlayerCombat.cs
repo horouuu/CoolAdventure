@@ -23,6 +23,9 @@ public class PlayerCombat : MonoBehaviour
     // managers
     public GameManager gameManager;
 
+    // audio source
+    public AudioSource gotHitSource;
+
     public void Attack()
     {
         if (Time.time >= nextAttack)
@@ -39,6 +42,14 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
+    public void Revive()
+    {
+        animator.SetBool("isDead", false);
+        GetComponent<Rigidbody2D>().simulated = true;
+        GetComponent<Collider2D>().enabled = true;
+        GetComponent<PlayerMovement>().enabled = true;
+        this.enabled = true;
+    }
     void Die()
     {
         animator.SetBool("isDead", true);
@@ -67,6 +78,7 @@ public class PlayerCombat : MonoBehaviour
 
         // hurt anim
         animator.SetTrigger("hit");
+        gotHitSource.PlayOneShot(gotHitSource.clip);
 
         if (PlayerHealth.playerCurrentHp <= 0)
         {

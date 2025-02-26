@@ -1,4 +1,3 @@
 repository "Lab/Lab@18968242172657@cloud"
   path "/"
-    br "/main"
-    co "/main"
+    smartbranch "/main"

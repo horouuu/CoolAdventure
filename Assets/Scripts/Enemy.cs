@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private float stunNext = 0f;
     public GameObject dropItem;
     public ScoreManager scoreManager;
+    public AudioSource gotHitSource;
 
     IEnumerator MiniStun()
     {
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
 
         // hurt anim
         animator.SetTrigger("hit");
+        gotHitSource.PlayOneShot(gotHitSource.clip);
 
         if (currentHp <= 0)
         {
@@ -56,6 +58,7 @@ public class Enemy : MonoBehaviour
     {
         currentHp = maxHp;
         animator = GetComponent<Animator>();
+        scoreManager = ScoreManager.instance;
     }
 
     public void DropItem()
